@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test github</title>
+  <link rel="stylesheet" href="vendor/normalize/normalize.css" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/gitgraph.css" />
+  <script type="text/javascript" src="vendor/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="vendor/angular/angular.min.js"></script>
+	<script src="js/gitgraph.min.js"></script>
+</head>
+<body ng-app="gitconsole">
+  <div ng-controller="startCtrl" style="overflow-x: scroll; width: 100%;">
+    <canvas id="gitGraph"></canvas>
+  </div>
+	<script src="js/main.js"></script>
+  <script type="text/javascript">
+    new gitconsole.GitConsoleApp();
+  </script>
+</body>
+</html>
