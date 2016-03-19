@@ -10,9 +10,18 @@
 	<script src="js/gitgraph.min.js"></script>
 </head>
 <body ng-app="gitconsole">
-  <div ng-controller="startCtrl" style="overflow-x: scroll; width: 100%;">
+  <div style="overflow-x: scroll; width: 100%;">
     <canvas id="gitGraph"></canvas>
   </div>
+
+	<div class="console" ng-controller="consoleCtrl">
+		<pre id="consoleOutput" class="console-window" ng-bind-html="ConsoleOutput"></pre>
+		<div class="console-line">
+			<span class="console-line-start">$</span>
+			<input type="text" autofocus ng-model="ConsoleCommand" ng-keypress="EnterPressed($event)" />
+		</div>
+	</div>
+
 	<script src="js/main.js"></script>
   <script type="text/javascript">
     new gitconsole.GitConsoleApp();

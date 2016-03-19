@@ -1,24 +1,36 @@
-.container {
-  margin: 100px auto;
-  width: 60%;
-  background-color: green;
+.console {
+  width: 700px;
+  margin: auto;
+  padding-top: 20px;
 }
-.table-header {
-  display: inline-block;
-  height: 50px;
-  width: 25%;
-}
-.timeline-header {
-  display: inline-block;
-  height: 50px;
-  width: 75%;
-}
-.day {
-  display: inline-block;
-  height: 50px;
-  width: 50px;
-  background-color: red;
-  padding: 0;
+.console-window {
+  width: 670px;
+  height: 270px;
+  background-color: #000;
   margin: 0;
+  color: #fff;
+  padding: 15px;
+  font-size: 14px;
+}
+.console-line {
+  width: 700px;
+  height: 32px;
+  background-color: #000;
+  font-size: 14px;
+}
+.console-line-start{
+  color: #fff;
+  line-height: 30px;
+  font-size: 14px;
+}
+.console-line input {
+  margin-left: 6px;
+  width: 670px;
+  height: 30px;
+  background-color: #000;
+  color: #fff;
   border: none;
+  outline: none;
+  font-size: 14px;
+  font-family: monospace, monospace;
 }
