@@ -4,7 +4,7 @@ var gitconsole;
         function GitConsoleApp() {
             var timelineApp = angular.module('gitconsole', [])
                 .service('CommandHandler', ['GitService', gitconsole.CommandHandler])
-                .service('GitService', [gitconsole.GitService])
+                .service('GitService', ['$filter', gitconsole.GitService])
                 .controller('consoleCtrl', ['$scope', '$sce', 'CommandHandler', 'GitService', gitconsole.ConsoleCtrl]);
         }
         return GitConsoleApp;
@@ -52,6 +52,11 @@ var gitconsole;
         }
         CommandHandler.prototype.Parse = function (command) {
             this.GitService.Commit(command);
+            this.GitService.CreateBranch("develop");
+            this.GitService.Commit("test 1");
+            this.GitService.Commit("test 2");
+            this.GitService.Checkout("master");
+            this.GitService.Commit("hello master");
             return {
                 Execute: function () {
                     console.log(command);
@@ -65,8 +70,9 @@ var gitconsole;
 var gitconsole;
 (function (gitconsole) {
     var GitService = (function () {
-        function GitService() {
-            this.gitgraph = new GitGraph({
+        function GitService($filter) {
+            this.$filter = $filter;
+            this.gitGraph = new GitGraph({
                 template: "metro",
                 orientation: "horizontal",
                 mode: "compact"
@@ -75,10 +81,19 @@ var gitconsole;
             this.Commit("start commit");
         }
         GitService.prototype.CreateBranch = function (branchName) {
-            this.currentBranch = this.gitgraph.branch(branchName);
+            this.currentBranch = this.gitGraph.branch(branchName);
         };
         GitService.prototype.Commit = function (commitMessage) {
             this.currentBranch.commit(commitMessage);
+        };
+        GitService.prototype.Checkout = function (branchName) {
+            var branch = this.GetBranch(branchName);
+            this.currentBranch = branch;
+            this.currentBranch.checkout();
+        };
+        GitService.prototype.GetBranch = function (branchName) {
+            var targetBranch = this.$filter('filter')(this.gitGraph.branches, { name: branchName })[0];
+            return targetBranch;
         };
         return GitService;
     })();

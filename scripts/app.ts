@@ -4,7 +4,7 @@ module gitconsole {
     constructor() {
       var timelineApp = angular.module('gitconsole', [])
         .service('CommandHandler', ['GitService', CommandHandler])
-        .service('GitService', [GitService])
+        .service('GitService', ['$filter', GitService])
         .controller('consoleCtrl', ['$scope', '$sce', 'CommandHandler', 'GitService', ConsoleCtrl]);
     }
   }

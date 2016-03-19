@@ -3,5 +3,7 @@ module gitconsole {
     CreateBranch(branchName: string);
 
     Commit(commitMessage: string);
+
+    Checkout(branchName: string);
   }
 }
